@@ -43,13 +43,13 @@
         sh:maxCount 1 ;
     ] .
 
-:Re3DataRepositoryShape a sh:NodeShape ;
-    sh:property [
-        sh:path r3d:dataCatalog ;
-        sh:nodeKind sh:IRI ;
-        #sh:node :CatalogShape ;
-    ] .
-
 :RepositoryShape a sh:NodeShape ;
     sh:class r3d:Repository ;
-    sh:and ( :ResourceShape :Re3DataRepositoryShape ) .
+    sh:and (
+        :ResourceShape
+        [
+            sh:path r3d:dataCatalog ;
+            sh:nodeKind sh:IRI ;
+            #sh:node :CatalogShape ;
+        ]
+    ) .

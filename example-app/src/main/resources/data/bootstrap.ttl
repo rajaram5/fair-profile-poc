@@ -1,0 +1,27 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix r3d: <http://www.re3data.org/schema/3-0#> .
+@prefix wfx: <http://purl.org/fair/profile/workflow#> .
+
+<http://localhost:8080/fdp> a r3d:Repository ;
+    dct:conformsTo <http://purl.org/fair/profile/core> ;
+    r3d:dataCatalog <http://localhost:8080/fdp/catalog/foo> .
+
+<http://localhost:8080/fdp/catalog/foo> a dcat:Catalog ;
+    dct:conformsTo <http://purl.org/fair/profile/core> ;
+    dcat:dataset <http://localhost:8080/fdp/dataset/bar> .
+
+<http://localhost:8080/fdp/dataset/bar> a dcat:Dataset ;
+    dct:conformsTo <http://purl.org/fair/profile/core> ;
+    dcat:distribution <http://localhost:8080/fdp/distribution/baz> .
+
+<http://localhost:8080/fdp/distribution/baz> a dcat:Distribution ;
+    dct:conformsTo <http://purl.org/fair/profile/core> .
+
+<http://localhost:8080/fdp/workflow/1> a wfx:Workflow ;
+    dct:conformsTo <http://purl.org/fair/profile/workflow> ;
+    wfx:subcomponent <http://localhost:8080/fdp/subcomponent/A> .
+
+<http://localhost:8080/fdp/subcomponent/A> a wfx:Subcomponent ;
+    dct:conformsTo <http://purl.org/fair/profile/workflow> ;
+    wfx:description <http://example.com> .
