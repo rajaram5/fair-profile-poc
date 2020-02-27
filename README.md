@@ -11,7 +11,17 @@ Bootstrap and glue projects for running a FDP.
 Example application using the `fair-spring-boot-starter` to run a FAIR app.
 
 ## Quickstart
-First install the boot starter and autoconfigure projects locally:
+Prerequisites are a couple of external, non-published artifacts:
+```
+git clone -b develop https://github.com/kburger/rdf-transmog && cd rdf-transmog && mvn -q install && cd ..
+git clone -b develop  https://github.com/kburger/rdf-kaleidoscope && cd rdf-kaleidoscope && mvn -q install && cd ..
+git clone -b develop https://github.com/kburger/shape2java && cd shape2java && mvn -q install && cd ..
+git clone -b develop https://github.com/kburger/shape2java-maven-plugin && cd shape2java-maven-plugin && mvn -q install -Dinvoker.skip=true && cd ..
+git clone -b develop https://github.com/kburger/transmog-shape2java-plugin && cd transmog-shape2java-plugin && mvn -q install -Dinvoker.skip=true && cd ..
+git clone -b develop https://github.com/kburger/request-url-resolver && cd request-url-resolver && mvn -q install && cd ..
+```
+
+Install the boot starter and autoconfigure projects locally:
 ```
 cd spring-boot-starter
 mvn install
