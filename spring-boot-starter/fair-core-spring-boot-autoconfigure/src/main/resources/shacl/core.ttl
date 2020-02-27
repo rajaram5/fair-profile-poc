@@ -1,0 +1,55 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix r3d: <http://www.re3data.org/schema/3-0#> .
+@prefix : <http://example.com/> .
+
+:ResourceShape a sh:NodeShape ;
+    sh:property [
+        sh:path dct:conformsTo ;
+        sh:nodeKind sh:IRI ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+:DatasetShape a sh:NodeShape ;
+    sh:class dcat:Dataset ;
+    sh:and (
+        :ResourceShape
+        [
+            sh:path dcat:distribution ;
+            sh:nodeKind sh:IRI ;
+            #sh:node :DistributionShape ;
+        ]
+    ) .
+
+:CatalogShape a sh:NodeShape ;
+    sh:class dcat:Catalog ;
+    sh:and (
+        :DatasetShape
+        [
+            sh:path dcat:dataset ;
+            sh:nodeKind sh:IRI ;
+            #sh:node :DatasetShape ;
+        ]
+    ) .
+
+:DistributionShape a sh:NodeShape ;
+    sh:class dcat:Distribution ;
+    sh:property [
+        sh:path dct:conformsTo ;
+        sh:nodeKind sh:IRI ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+:Re3DataRepositoryShape a sh:NodeShape ;
+    sh:property [
+        sh:path r3d:dataCatalog ;
+        sh:nodeKind sh:IRI ;
+        #sh:node :CatalogShape ;
+    ] .
+
+:RepositoryShape a sh:NodeShape ;
+    sh:class r3d:Repository ;
+    sh:and ( :ResourceShape :Re3DataRepositoryShape ) .

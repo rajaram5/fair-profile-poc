@@ -1,0 +1,21 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix wfx: <http://purl.org/fair/profile/workflow> .
+@prefix : <http://example.com/> .
+
+:WorkflowShape a sh:NodeShape ;
+    sh:class wfx:Workflow ;
+    sh:property [
+        sh:path wfx:subcomponent ;
+        sh:nodeKind sh:IRI ;
+        # sh:node :SubcomponentShape
+    ] .
+
+:SubcomponentShape a sh:NodeShape ;
+    sh:class wfx:Subcomponent ;
+    sh:property [
+        sh:path wfx:description ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:nodeKind sh:IRI ;
+    ] .

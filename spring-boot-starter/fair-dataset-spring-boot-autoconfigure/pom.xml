@@ -16,6 +16,8 @@
         <spring.version>5.2.4.RELEASE</spring.version>
         <!-- provided -->
         <servlet.version>4.0.1</servlet.version>
+        <!-- runtime -->
+        <rdf4j.version>3.1.1</rdf4j.version>
     </properties>
 
     <dependencies>
@@ -36,6 +38,17 @@
             <version>${spring.version}</version>
         </dependency>
         
+        <dependency>
+            <groupId>com.github.kburger</groupId>
+            <artifactId>rdf-transmog-core</artifactId>
+            <version>0.1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.kburger</groupId>
+            <artifactId>request-url-resolver-core</artifactId>
+            <version>0.2.0-SNAPSHOT</version>
+        </dependency>
+        
         <!-- provided -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -43,5 +56,60 @@
             <version>${servlet.version}</version>
             <scope>provided</scope>
         </dependency>
+        
+        <!-- runtime -->
+        <dependency>
+            <groupId>org.eclipse.rdf4j</groupId>
+            <artifactId>rdf4j-rio-turtle</artifactId>
+            <version>${rdf4j.version}</version>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.github.kburger</groupId>
+                <artifactId>shape2java-maven-plugin</artifactId>
+                <version>0.1.0-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <package>com.github.kburger.fair.poc.dataset.model</package>
+                            <schema>${basedir}/src/main/resources/shacl/dataset.ttl</schema>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <!-- SourceGenerator provider -->
+                    <dependency>
+                        <groupId>com.github.kburger</groupId>
+                        <artifactId>shape2java-javapoet-api</artifactId>
+                        <version>0.1.0-SNAPSHOT</version>
+                    </dependency>
+                    <!-- ShapeParser provider -->
+                    <dependency>
+                        <groupId>com.github.kburger</groupId>
+                        <artifactId>rdf-kaleidoscope-parser-shacl</artifactId>
+                        <version>0.1.0-SNAPSHOT</version>
+                    </dependency>
+                    <!-- TypeGenerator provider -->
+                    <dependency>
+                        <groupId>com.github.kburger</groupId>
+                        <artifactId>shape2java-javapoet-bean</artifactId>
+                        <version>0.1.0-SNAPSHOT</version>
+                    </dependency>
+                    <!-- Decorator/AuxiliaryGenerator provider -->
+                    <dependency>
+                        <groupId>com.github.kburger</groupId>
+                        <artifactId>transmog-shape2java-plugin</artifactId>
+                        <version>0.1.0-SNAPSHOT</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
 </project>

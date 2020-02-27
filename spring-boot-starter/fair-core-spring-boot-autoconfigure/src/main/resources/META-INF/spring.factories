@@ -1,2 +1,5 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.github.kburger.fair.poc.core.CoreAutoConfiguration
+
+org.springframework.context.ApplicationContextInitializer=\
+com.github.kburger.fair.poc.core.web.converter.HttpMessageConverterInitializer
